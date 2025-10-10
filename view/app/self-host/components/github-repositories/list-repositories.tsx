@@ -6,8 +6,8 @@ import GithubRepositories, { GithubRepositoriesSkeletonLoader } from './reposito
 import PaginationWrapper from '@/components/ui/pagination';
 import { useTranslation } from '@/hooks/use-translation';
 
-/* Typography to match dashboard */
-import { TypographyH1 } from '@/components/ui/typography';
+/* Typography */
+import { TypographyMuted } from '@/components/ui/typography';
 
 function ListRepositories() {
   const { t } = useTranslation();
@@ -32,7 +32,11 @@ function ListRepositories() {
     }
 
     if (paginatedApplications?.length === 0 && !isLoading) {
-      return <div className="text-center">{t('selfHost.repositories.noRepositories')}</div>;
+      return (
+        <div className="text-center">
+          {t('selfHost.repositories.noRepositories')}
+        </div>
+      );
     }
     return (
       <>
@@ -65,10 +69,15 @@ function ListRepositories() {
         sortConfig={sortConfig}
         onSortChange={onSortChange}
         sortOptions={sortOptions}
-        /* Use TypographyH1 in Title */
-        label={<TypographyH1>{t('selfHost.repositories.title')}</TypographyH1>}
-        className="mt-5 mb-5"
+        /* (changed) plain string label, no nested heading */
+        label={t('selfHost.repositories.title')}
+        className="mt-5 mb-2 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2"
       />
+      {/* (added) description outside header for consistency */}
+      <TypographyMuted className="mb-5">
+        {t('selfHost.repositories.description')}
+      </TypographyMuted>
+
       {renderGithubRepositories()}
     </div>
   );

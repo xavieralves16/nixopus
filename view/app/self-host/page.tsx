@@ -16,8 +16,8 @@ import DisabledFeature from '@/components/features/disabled-feature';
 import { ResourceGuard, AnyPermissionGuard } from '@/components/rbac/PermissionGuard';
 import PageLayout from '@/components/layout/page-layout';
 
-/* added typography to match dashboard */
-import { TypographyH1, TypographyH2, TypographyMuted } from '@/components/ui/typography';
+/* Typography */
+import { TypographyH2, TypographyMuted } from '@/components/ui/typography';
 
 function page() {
   const { t } = useTranslation();
@@ -51,10 +51,7 @@ function page() {
 
   const renderContent = () => {
     return (
-      <AnyPermissionGuard 
-        permissions={['deploy:create']}
-        loadingFallback={null}
-      >
+      <AnyPermissionGuard permissions={['deploy:create']} loadingFallback={null}>
         {inGitHubFlow && (
           <GitHubAppSetup GetGithubConnectors={GetGithubConnectors} />
         )}
@@ -73,14 +70,14 @@ function page() {
   };
 
   return (
-    <ResourceGuard 
-      resource="deploy" 
+    <ResourceGuard
+      resource="deploy"
       action="read"
       loadingFallback={<Skeleton />}
       fallback={
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
-            {/* Altered to use consistent typography */}
+            {/* Consistent access denied message */}
             <TypographyH2>{t('selfHost.page.accessDenied.title')}</TypographyH2>
             <TypographyMuted>{t('selfHost.page.accessDenied.description')}</TypographyMuted>
           </div>
@@ -89,7 +86,7 @@ function page() {
     >
       <PageLayout maxWidth="6xl" padding="md" spacing="lg">
         {renderContent()}
-        
+
         {showApplications && (
           <>
             <DahboardUtilityHeader<Application>
@@ -98,14 +95,11 @@ function page() {
               sortConfig={sortConfig}
               onSortChange={onSortChange}
               sortOptions={sortOptions}
-              /* Use typography h1 for page title */
-              label={<TypographyH1>{t('selfHost.page.title')}</TypographyH1>}
-              className="mt-5 mb-5 justify-between items-center"
+              /* (changed) pass plain string, no nested heading */
+              label={t('selfHost.page.title')}
+              className="mt-5 mb-2 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2"
               children={
-                <AnyPermissionGuard 
-                  permissions={['deploy:create']}
-                  loadingFallback={null}
-                >
+                <AnyPermissionGuard permissions={['deploy:create']} loadingFallback={null}>
                   <Button
                     className="mb-4 w-max flex justify-self-end mt-4"
                     onClick={() => {
@@ -117,6 +111,11 @@ function page() {
                 </AnyPermissionGuard>
               }
             />
+            {/* (added) description outside header */}
+            <TypographyMuted className="mb-5">
+              {t('selfHost.page.description')}
+            </TypographyMuted>
+
             {isLoading || isLoadingApplications ? (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <AppItemSkeleton />
@@ -126,7 +125,10 @@ function page() {
             ) : (
               <>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                  {applications && applications.map((app: any) => <AppItem key={app.id} {...app} />)}
+                  {applications &&
+                    applications.map((app: any) => (
+                      <AppItem key={app.id} {...app} />
+                    ))}
                 </div>
 
                 {totalPages > 1 && (

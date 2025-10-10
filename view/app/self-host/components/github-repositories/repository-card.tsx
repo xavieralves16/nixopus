@@ -6,7 +6,7 @@ import { GithubRepository } from '@/redux/types/github';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useTranslation } from '@/hooks/use-translation';
 
-/* Dashboard typography */
+/* Typography */
 import { TypographySmall, TypographyMuted } from '@/components/ui/typography';
 
 const GithubRepositories = ({
@@ -30,8 +30,8 @@ const GithubRepositories = ({
       onClick={() => setSelectedRepository(id.toString())}
     >
       <CardHeader className="pb-2">
-        {/* Use TypographySmall in title */}
-        <CardTitle className="flex items-center gap-2 text-sm sm:text-base font-bold">
+        {/* (changed) consistent typography: TypographySmall with xs/sm size */}
+        <CardTitle className="flex items-center gap-2 text-xs sm:text-sm font-bold">
           <Github className="text-primary" size={20} />
           <TypographySmall>
             {name || t('selfHost.repositoryCard.unnamed')}
@@ -50,7 +50,7 @@ const GithubRepositories = ({
         </CardTitle>
         {description && (
           <CardDescription className="line-clamp-2">
-            {/* Use TypographyMuted */}
+            {/* (changed) muted description */}
             <TypographyMuted>{description}</TypographyMuted>
           </CardDescription>
         )}
@@ -110,46 +110,3 @@ const GithubRepositories = ({
 };
 
 export default GithubRepositories;
-
-
-export const GithubRepositoriesSkeletonLoader: React.FC = () => {
-  return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-      {[...Array(6)].map((_, index) => (
-        <Card
-          key={index}
-          className="group relative w-full max-w-md overflow-hidden transition-all duration-300 hover:bg-muted hover:shadow-lg"
-        >
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm sm:text-base font-bold">
-              <Skeleton className="h-6 w-6 rounded-full" />
-              <Skeleton className="h-6 w-40" />
-              <Skeleton className="ml-auto h-6 w-6 rounded-full" />
-            </CardTitle>
-            <CardDescription>
-              <Skeleton className="mt-2 h-4 w-full" />
-              <Skeleton className="mt-1 h-4 w-3/4" />
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex flex-wrap items-center gap-2">
-              <Skeleton className="h-5 w-16 rounded-full" />
-              <Skeleton className="h-5 w-20 rounded-full" />
-            </div>
-            <div className="flex items-center gap-4 text-sm">
-              <Skeleton className="h-4 w-12" />
-              <Skeleton className="h-4 w-12" />
-              <Skeleton className="h-4 w-12" />
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <Skeleton className="h-5 w-16 rounded-full" />
-              <Skeleton className="h-5 w-16 rounded-full" />
-              <Skeleton className="h-5 w-16 rounded-full" />
-              <Skeleton className="h-5 w-16 rounded-full" />
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
-};
