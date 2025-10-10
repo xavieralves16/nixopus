@@ -15,8 +15,9 @@ import { FeatureNames } from '@/types/feature-flags';
 import DisabledFeature from '@/components/features/disabled-feature';
 import { ResourceGuard, AnyPermissionGuard } from '@/components/rbac/PermissionGuard';
 import PageLayout from '@/components/layout/page-layout';
-import { TypographyH2 } from '@/components/ui/typography';
-import { TypographyMuted } from '@/components/ui/typography';
+
+/* added typography to match dashboard */
+import { TypographyH1, TypographyH2, TypographyMuted } from '@/components/ui/typography';
 
 function page() {
   const { t } = useTranslation();
@@ -79,6 +80,7 @@ function page() {
       fallback={
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
+            {/* Altered to use consistent typography */}
             <TypographyH2>{t('selfHost.page.accessDenied.title')}</TypographyH2>
             <TypographyMuted>{t('selfHost.page.accessDenied.description')}</TypographyMuted>
           </div>
@@ -96,7 +98,8 @@ function page() {
               sortConfig={sortConfig}
               onSortChange={onSortChange}
               sortOptions={sortOptions}
-              label={t('selfHost.page.title')}
+              /* Use typography h1 for page title */
+              label={<TypographyH1>{t('selfHost.page.title')}</TypographyH1>}
               className="mt-5 mb-5 justify-between items-center"
               children={
                 <AnyPermissionGuard 
@@ -145,3 +148,4 @@ function page() {
 }
 
 export default page;
+
