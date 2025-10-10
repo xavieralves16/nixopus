@@ -6,6 +6,9 @@ import { GithubRepository } from '@/redux/types/github';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useTranslation } from '@/hooks/use-translation';
 
+/* Dashboard typography */
+import { TypographySmall, TypographyMuted } from '@/components/ui/typography';
+
 const GithubRepositories = ({
   name,
   html_url: url,
@@ -23,13 +26,16 @@ const GithubRepositories = ({
 
   return (
     <Card
-      className="group relative  w-full max-w-md cursor-pointer overflow-hidden transition-all duration-300 hover:bg-muted hover:shadow-lg"
+      className="group relative w-full max-w-md cursor-pointer overflow-hidden transition-all duration-300 hover:bg-muted hover:shadow-lg"
       onClick={() => setSelectedRepository(id.toString())}
     >
       <CardHeader className="pb-2">
-        <CardTitle className="flex items-center gap-2 text-lg font-bold">
-          <Github className="text-primary" size={24} />
-          {name || t('selfHost.repositoryCard.unnamed')}
+        {/* Use TypographySmall in title */}
+        <CardTitle className="flex items-center gap-2 text-sm sm:text-base font-bold">
+          <Github className="text-primary" size={20} />
+          <TypographySmall>
+            {name || t('selfHost.repositoryCard.unnamed')}
+          </TypographySmall>
           {url && (
             <a
               href={url}
@@ -43,8 +49,9 @@ const GithubRepositories = ({
           )}
         </CardTitle>
         {description && (
-          <CardDescription className="line-clamp-2 text-sm text-muted-foreground">
-            {description}
+          <CardDescription className="line-clamp-2">
+            {/* Use TypographyMuted */}
+            <TypographyMuted>{description}</TypographyMuted>
           </CardDescription>
         )}
       </CardHeader>
@@ -104,6 +111,7 @@ const GithubRepositories = ({
 
 export default GithubRepositories;
 
+
 export const GithubRepositoriesSkeletonLoader: React.FC = () => {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
@@ -113,7 +121,7 @@ export const GithubRepositoriesSkeletonLoader: React.FC = () => {
           className="group relative w-full max-w-md overflow-hidden transition-all duration-300 hover:bg-muted hover:shadow-lg"
         >
           <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-lg font-bold">
+            <CardTitle className="flex items-center gap-2 text-sm sm:text-base font-bold">
               <Skeleton className="h-6 w-6 rounded-full" />
               <Skeleton className="h-6 w-40" />
               <Skeleton className="ml-auto h-6 w-6 rounded-full" />

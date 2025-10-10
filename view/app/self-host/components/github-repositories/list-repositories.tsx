@@ -6,6 +6,9 @@ import GithubRepositories, { GithubRepositoriesSkeletonLoader } from './reposito
 import PaginationWrapper from '@/components/ui/pagination';
 import { useTranslation } from '@/hooks/use-translation';
 
+/* Typography to match dashboard */
+import { TypographyH1 } from '@/components/ui/typography';
+
 function ListRepositories() {
   const { t } = useTranslation();
   const {
@@ -28,7 +31,7 @@ function ListRepositories() {
       return <GithubRepositoriesSkeletonLoader />;
     }
 
-  if (paginatedApplications?.length === 0 && !isLoading) {
+    if (paginatedApplications?.length === 0 && !isLoading) {
       return <div className="text-center">{t('selfHost.repositories.noRepositories')}</div>;
     }
     return (
@@ -62,7 +65,8 @@ function ListRepositories() {
         sortConfig={sortConfig}
         onSortChange={onSortChange}
         sortOptions={sortOptions}
-        label={t('selfHost.repositories.title')}
+        /* Use TypographyH1 in Title */
+        label={<TypographyH1>{t('selfHost.repositories.title')}</TypographyH1>}
         className="mt-5 mb-5"
       />
       {renderGithubRepositories()}
