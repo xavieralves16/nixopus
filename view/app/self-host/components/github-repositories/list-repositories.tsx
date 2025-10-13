@@ -6,7 +6,7 @@ import GithubRepositories, { GithubRepositoriesSkeletonLoader } from './reposito
 import PaginationWrapper from '@/components/ui/pagination';
 import { useTranslation } from '@/hooks/use-translation';
 
-/* Typography */
+
 import { TypographyMuted } from '@/components/ui/typography';
 
 function ListRepositories() {
@@ -73,7 +73,6 @@ function ListRepositories() {
         label={t('selfHost.repositories.title')}
         className="mt-5 mb-2 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2"
       />
-      {/* (added) description outside header for consistency */}
       <TypographyMuted className="mb-5">
         {t('selfHost.repositories.description')}
       </TypographyMuted>
