@@ -6,7 +6,7 @@ import { GithubRepository } from '@/redux/types/github';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useTranslation } from '@/hooks/use-translation';
 
-/* Typography */
+
 import { TypographySmall, TypographyMuted } from '@/components/ui/typography';
 
 const GithubRepositories = ({
@@ -30,7 +30,6 @@ const GithubRepositories = ({
       onClick={() => setSelectedRepository(id.toString())}
     >
       <CardHeader className="pb-2">
-        {/* (changed) consistent typography: TypographySmall with xs/sm size */}
         <CardTitle className="flex items-center gap-2 text-xs sm:text-sm font-bold">
           <Github className="text-primary" size={20} />
           <TypographySmall>
@@ -50,7 +49,6 @@ const GithubRepositories = ({
         </CardTitle>
         {description && (
           <CardDescription className="line-clamp-2">
-            {/* (changed) muted description */}
             <TypographyMuted>{description}</TypographyMuted>
           </CardDescription>
         )}
