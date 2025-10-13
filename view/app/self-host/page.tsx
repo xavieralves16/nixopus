@@ -16,7 +16,7 @@ import DisabledFeature from '@/components/features/disabled-feature';
 import { ResourceGuard, AnyPermissionGuard } from '@/components/rbac/PermissionGuard';
 import PageLayout from '@/components/layout/page-layout';
 
-/* Typography */
+
 import { TypographyH2, TypographyMuted } from '@/components/ui/typography';
 
 function page() {
@@ -111,7 +111,6 @@ function page() {
                 </AnyPermissionGuard>
               }
             />
-            {/* (added) description outside header */}
             <TypographyMuted className="mb-5">
               {t('selfHost.page.description')}
             </TypographyMuted>
