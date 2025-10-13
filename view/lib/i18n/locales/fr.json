@@ -12,7 +12,9 @@
     "featureNotAvailable": "Cette caractéristique n'est pas disponible pour votre organisation",
     "goBack": "Retour",
     "refreshPage": "Actualiser la page",
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "enabled": "Activé",
+    "disabled": "Désactivé"
   },
   "containers": {
     "title": "Conteneurs",
@@ -97,6 +99,7 @@
       "termsOfService": "Conditions d'Utilisation",
       "and": "et",
       "privacyPolicy": "Politique de Confidentialité",
+      "forgotPassword": "Mot de passe oublié ?",
       "errors": {
         "loginFailed": "Échec de la connexion",
         "invalidCredentials": "Email ou mot de passe invalide",
@@ -286,7 +289,15 @@
       "messages": {
         "updated": "Caractéristique mise à jour avec succès",
         "updateFailed": "Échec de la mise à jour de la caractéristique"
-      }
+      },
+      "searchPlaceholder": "Rechercher des caractéristiques...",
+      "filters": {
+        "all": "Toutes",
+        "enabled": "Activées",
+        "disabled": "Désactivées"
+      },
+      "noResults": "Aucune caractéristique trouvée correspondant à votre recherche",
+      "noFeatures": "Aucune caractéristique disponible"
     },
     "account": {
       "title": "Informations du Compte",
